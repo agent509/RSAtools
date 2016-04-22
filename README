@@ -1,0 +1,10 @@
+Note: The included tools are for educational purposes only, do not use anything
+included here for actual crypto purposes.
+
+The tools here were used in the making of the ctf RSA challenges.
+
+the factorRSA program can be used to factor large RSA keys whose
+primes were chosen too closely together.
+
+The other program is effectively a full suite, including functions
+for primality testing, RSA key generation, encryption, and decryption.
