@@ -1,5 +1,14 @@
 from math import *
 
+
+def mysqrt(n):
+  x = n
+  y = (x + 1) // 2
+  while y < x:
+    x = y
+    y = (x + n // x) // 2
+  return x
+
 def factor(N,iter):
 
   a = 0 
@@ -13,7 +22,7 @@ def factor(N,iter):
 
     a = a+1
     b_sqrd = N+a*a 
-    b = int(round(sqrt(b_sqrd),0))
+    b = mysqrt(b_sqrd)
 
     if b**2 == b_sqrd:
       perfect = True

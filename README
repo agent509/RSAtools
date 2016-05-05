@@ -3,8 +3,12 @@ included here for actual crypto purposes.
 
 The tools here were used in the making of the ctf RSA challenges.
 
-the factorRSA program can be used to factor large RSA keys whose
+the factorRsa program can be used to factor large RSA keys whose
 primes were chosen too closely together.
 
-The other program is effectively a full suite, including functions
-for primality testing, RSA key generation, encryption, and decryption.
+the primenumber generates prime numbers that are close together for use in the challenge
+
+The other program is an RSA program. Complete with generating keys, encrypting, and decrypting.
+It's a good way to see how some of the algorithms work, from the RSA basics, to primality testing,
+to fast exponentiation, etc. Again, DO NOT USE FOR ACTUAL CRYPTO. messages are not padded, the RNG
+is not cryptographically secure, etc, etc, etc.

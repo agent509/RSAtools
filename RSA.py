@@ -1,6 +1,8 @@
 from random import *
 import os
 
+# Extended euclidian algorithm;
+
 def egcd(a, b):
   x,y, u,v = 0,1, 1,0
   while a != 0:
@@ -10,12 +12,17 @@ def egcd(a, b):
   gcd = b
   return gcd, x, y
 
+
+# Uses the extended euclidian algorithm to compute modular inverses
+
 def modinv(a, m):
   gcd, x, y = egcd(a, m)
   if gcd != 1:
     return None  # modular inverse does not exist
   else:
     return x % m
+
+# Fast modular exponentiation algorithm.
 
 def fastexp(g,x,n):
   result = 1
@@ -25,6 +32,8 @@ def fastexp(g,x,n):
     x = x//2
     g = (g*g)%n
   return(result)
+
+#Miller-Rabin Primality Test
 
 def isPrime(n,k):
 
@@ -58,9 +67,12 @@ def isPrime(n,k):
   return(True)
 
 
+#function for generating new private-public key pair
 
 def generate(key):
   
+# Generates random numbers until two prime numbers are found
+
   p = SystemRandom().randint(2**(key-1),2**(key+1))
   while not isPrime(p,40):
     p = SystemRandom().randint(2**(key-1),2**(key+1))
@@ -68,10 +80,14 @@ def generate(key):
   while not isPrime(q,40):
     q = SystemRandom().randint(2**(key-1),2**(key+1))
 
+# Computing public modulus, and private component using said public modulus
+
   n=p*q
   phin = (p-1)*(q-1)
   e = 65537
   d = modinv(e,phin)
+
+# Writing public and private key to file
   
   pub = open("public.txt","w")
   pub.write(str(e)+':'+str(n))
@@ -80,6 +96,8 @@ def generate(key):
   priv = open("private.txt","w")
   priv.write(str(d)+':'+str(n))
 
+
+# Function for Encrypting file
 
 def encrypt(keyfile,message):
   pub = open(keyfile,"r")
@@ -100,6 +118,8 @@ def encrypt(keyfile,message):
 
   mf.close()
   f.close()
+
+# Function for decrypting file
 
 def decrypt(keyfile,message,output):
   priv = open(keyfile,"r")
